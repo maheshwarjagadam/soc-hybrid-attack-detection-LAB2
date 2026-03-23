@@ -22,7 +22,7 @@ The lab includes:
 - Splunk Enterprise for log analysis
 
 ![PowerShell Logging](01_setup/01_powershell_logging_enabled.png)
-![Sysmon Running](01_setup/02_sysmon_running.png)
+![Sysmon Running](01_setup/02_sysmon_running.png.png)
 
 ---
 

@@ -68,7 +68,36 @@ Detection rules were created to identify suspicious activity:
 ![Process Chain](Screenshots/04_splunk_detection/13_splunk_process_chain.png.png)
 
 ---
+## Key Detections
 
+### 1. Encoded PowerShell Detection
+
+Search Query:
+index=* "EncodedCommand" OR "-enc"
+
+This detection identifies obfuscated PowerShell commands used to evade detection.
+
+---
+
+### 2. Suspicious Keyword Detection
+
+Search Query:
+index=* EventCode=4104
+| search "Invoke-WebRequest" OR "DownloadString" OR "Get-Process"
+
+This helps detect malicious script activity such as payload downloads and reconnaissance.
+
+---
+
+### 3. Process Execution Chain
+
+Search Query:
+index=* EventCode=1 ParentImage="*powershell.exe"
+| table _time host ParentImage Image CommandLine
+
+This detects PowerShell spawning other processes, indicating post-exploitation behavior.
+
+---
 ## Correlation Analysis
 
 Multiple logs were correlated to understand the full attack chain:
@@ -94,6 +123,17 @@ This behavior aligns with MITRE ATT&CK techniques such as:
 - T1105 (Ingress Tool Transfer)
 
 ---
+## Attack Flow
+
+1. Attacker performs brute force attack (Event ID 4625)
+2. Gains access to the system
+3. Executes encoded PowerShell commands
+4. Performs reconnaissance (Get-Process, Get-Service)
+5. Attempts to download external payload
+6. Spawns additional processes (cmd.exe)
+
+These actions were captured and correlated using Splunk.
+---
 
 ## Conclusion
 
@@ -103,3 +143,12 @@ It highlights the importance of:
 - PowerShell logging
 - Process monitoring
 - SIEM-based detection
+
+## Skills Demonstrated
+
+- Security Monitoring (SIEM - Splunk)
+- Windows Event Log Analysis
+- PowerShell Threat Detection
+- Sysmon Log Analysis
+- Detection Engineering
+- Incident Correlation

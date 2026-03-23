@@ -21,8 +21,8 @@ The lab includes:
 - PowerShell Script Block Logging enabled
 - Splunk Enterprise for log analysis
 
-![PowerShell Logging](01_setup/01_powershell_logging_enabled.png)
-![Sysmon Running](01_setup/02_sysmon_running.png.png)
+![PowerShell Logging](Screenshots/01_setup/01_powershell_logging_enabled.png)
+![Sysmon Running](Screenshots/01_setup/02_sysmon_running.png.png)
 
 ---
 
@@ -35,10 +35,10 @@ The attacker performed multiple post-compromise activities:
 3. Attempted file download using PowerShell
 4. Process spawning (cmd.exe, notepad.exe)
 
-![Encoded Command](02_attack_simulation/03_encoded_command_generation.png)
-![Execution](02_attack_simulation/04_encoded_command_execution.png)
-![Download Attempt](02_attack_simulation/05_download_attempt.png)
-![Process Spawn](02_attack_simulation/06_process_spawn.png)
+![Encoded Command](Screenshots/02_attack_simulation/03_encoded_command_generation.png.png)
+![Execution](Screenshots/02_attack_simulation/04_encoded_command_execution.png.png)
+![Download Attempt](Screenshots/02_attack_simulation/05_download_attempt.png.png)
+![Process Spawn](Screenshots/02_attack_simulation/06_process_spawn.png.png)
 
 ---
 
@@ -49,9 +49,9 @@ Logs were validated using Event Viewer and Sysmon:
 - Event ID 4104 → PowerShell script execution
 - Sysmon Event ID 1 → Process creation tracking
 
-![Event Viewer 4104](03_log_validation/08_eventviewer_4104.png)
-![Sysmon Encoded](03_log_validation/09_sysmon_encoded_powershell.png)
-![Process Chain](03_log_validation/10_sysmon_cmd_parent_powershell.png)
+![Event Viewer 4104](Screenshots/03_log_validation/08_eventviewer_4104.png.png)
+![Sysmon Encoded](Screenshots/03_log_validation/09_sysmon_encoded_powershell.png.png)
+![Process Chain](Screenshots/03_log_validation/10_sysmon_cmd_parent_powershell.png.png)
 
 ---
 
@@ -63,9 +63,9 @@ Detection rules were created to identify suspicious activity:
 2. Suspicious keyword detection (Invoke-WebRequest, DownloadString)
 3. Process execution monitoring
 
-![Encoded Detection](04_splunk_detection/11_splunk_encoded_detection.png)
-![Keyword Detection](04_splunk_detection/12_splunk_keyword_detection.png)
-![Process Chain](04_splunk_detection/13_splunk_process_chain.png)
+![Encoded Detection](Screenshots/04_splunk_detection/11_splunk_encoded_detection.png.png)
+![Keyword Detection](Screenshots/04_splunk_detection/12_splunk_keyword_detection.png.png)
+![Process Chain](Screenshots/04_splunk_detection/13_splunk_process_chain.png.png)
 
 ---
 
@@ -77,7 +77,7 @@ Multiple logs were correlated to understand the full attack chain:
 - PowerShell execution
 - Process creation
 
-![Correlation](05_correlation/15_splunk_correlation_timeline.png)
+![Correlation](Screenshots/05_correlation/15_splunk_correlation_timeline.png.png)
 
 ---
 
